@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457176302697",
+    "project_id": "fitmore-85114",
+    "storage_bucket": "fitmore-85114.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457176302697:android:2bd7ea2bb975b189708ef8",
+        "android_client_info": {
+          "package_name": "com.example.fitmore_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAvxIyTv6_KRsxRxuOlGXbeBaPRxzfc5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
