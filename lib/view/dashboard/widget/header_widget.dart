@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_responsive.dart';
-import '../../../controllers/menu_controller.dart';
+import '../../../controllers/side_bar/menu_controller.dart';
 // import 'package:flutter_hr_management/controllers/menu_controller.dart';
 // import 'package:provider/provider.dart';
 

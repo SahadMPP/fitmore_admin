@@ -1,4 +1,5 @@
-import 'package:fitmore_admin/pages/product/widget/text_field_reg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitmore_admin/view/product/widget/text_field_reg.dart';
 import 'package:flutter/material.dart';
 
 class AddingProduct extends StatefulWidget {
@@ -10,7 +11,7 @@ class AddingProduct extends StatefulWidget {
 
 class _AddingProductState extends State<AddingProduct> {
   List<Widget> children = [
-     Expanded(
+    Expanded(
         child: Column(
       children: [
         Wrap(
@@ -94,8 +95,10 @@ class _AddingProductState extends State<AddingProduct> {
         ],
       ),
     )),
-   
   ];
+
+  CollectionReference conf =
+                            FirebaseFirestore.instance.collection('product');
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +116,11 @@ class _AddingProductState extends State<AddingProduct> {
             flex: 8,
             child: Container(
               margin: const EdgeInsets.all(12),
-              child:width < 600 ? Column(children: children,): Row(children: children),
+              child: width < 600
+                  ? Column(
+                      children: children,
+                    )
+                  : Row(children: children),
             ),
           ),
           Expanded(
@@ -121,7 +128,25 @@ class _AddingProductState extends State<AddingProduct> {
                   width: MediaQuery.of(context).size.width * .5,
                   height: 50,
                   child: ElevatedButton(
-                      onPressed: () {}, child: const Text('Add'))))
+                      onPressed: () {
+                        final map = {
+                          "id": 1,
+                          "title": "Sample Product",
+                          "discription":
+                              "This is a sample product description.",
+                          "image1": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRx2pjMbW3AbuqbUIyDxfN2TE2GXEdsBQZWA9vk7pTZr7YnrP9dkXfHZLKMsJ6N1279oY04tVEc3wBMo2XS_BIApjv6fY--S8Jb9K4ToBz0K7nLjvkHaA_4uA",
+                          "image2": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR3Q--KOMcN4yipQpGRBr-SlMtv5owA9FxpZtjoENDr4-qloEmKvDCbhlKH_8C4muObO3J-C34nVRbJNhw0nPK99PXlpnu7uqAgb6z5yQfx",
+                          "image3": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ4JMkWi_XRklYC_H_jjcNVXfqJOmHb_0taEBE1p-ZidaAnXwVXXL_OTRQSXdm_QqQPUz0bq62vjkBbi47e59kudSCYed15XHRwntL8aP7MyPHqsLcAh7B_gw",
+                          "image4": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTHbQ3B4iL-4SOwEOgYxBQ-ieKsxTIAqv4PyznGOOGCT4VSNBBtQltNJZgxS8eBApQgfVgcYn5s4xiQuerAT4p6wQoponlLEB7dZWMdySOkgkZYCdRKH09XZMo",
+                          "price": 100,
+                          "category": "Electronics",
+                          "active": true,
+                          "productCount": 50
+                        };
+                        
+                        conf.add(map);
+                      },
+                      child: const Text('Add'))))
         ],
       ),
     );

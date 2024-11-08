@@ -1,15 +1,15 @@
-import 'package:fitmore_admin/controllers/menu_controller.dart';
-import 'package:fitmore_admin/pages/coupons/coupon_list.dart';
+import 'package:fitmore_admin/controllers/side_bar/menu_controller.dart';
+import 'package:fitmore_admin/view/coupons/coupon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_hr_management/controllers/menu_controller.dart';
 // import 'package:provider/provider.dart';
 
-import '../common/app_colors.dart';
-import '../common/app_responsive.dart';
-import 'dashboard/dashboard.dart';
-import 'product/product_list.dart';
-import 'widget/side_bar_menu.dart';
+import '../../common/app_colors.dart';
+import '../../common/app_responsive.dart';
+import '../dashboard/dashboard.dart';
+import '../product/product_list.dart';
+import '../widget/side_bar_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> pageList = [
-    Dashboard(),
+    const Dashboard(),
     const ProdectList(),
     const CouponList(),
     // Placeholder(color: Colors.purple),
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBar(),
+      drawer: const SideBar(),
       key: Provider.of<MenuuController>(context, listen: false).scaffoldKey,
       backgroundColor: AppColor.bgSideMenu,
       body:
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               /// Side Navigation Menu
               /// Only show in desktop
               if (AppResponsive.isDesktop(context))
-                Expanded(
+                const Expanded(
                   child: SideBar(),
                 ),
 

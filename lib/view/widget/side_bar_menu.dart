@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/app_colors.dart';
-import '../../controllers/menu_controller.dart';
+import '../../controllers/side_bar/menu_controller.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
