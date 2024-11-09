@@ -8,7 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'view/home/home_page.dart';
+import 'view/auth/login_page.dart';
+import 'package:sizer/sizer.dart';
+// import 'view/home/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,16 +29,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => MenuuController()),
-        ],
-        child: const HomePage(),
+    return Sizer(
+      builder: (p0, p1, p2) =>
+      MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+            textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => MenuuController()),
+          ],
+          child: const Login(),
+        ),
       ),
     );
   }
