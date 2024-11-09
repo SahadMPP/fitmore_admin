@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'view/auth/login_page.dart';
 import 'package:sizer/sizer.dart';
+
+import 'view/coupons/coupon_list.dart';
 // import 'view/home/home_page.dart';
 
 void main() async {
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(create: (context) => MenuuController()),
           ],
-          child: const Login(),
+          child: const CouponList(),
         ),
       ),
     );
