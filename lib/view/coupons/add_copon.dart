@@ -3,8 +3,8 @@ import 'package:fitmore_admin/utils/const/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class AddProduct extends StatelessWidget {
-  const AddProduct({super.key});
+class AddCoupon extends StatelessWidget {
+  const AddCoupon({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,63 +26,18 @@ class AddProduct extends StatelessWidget {
                       flex: 4,
                       child: Column(
                         children: [
-                          if(width<900)
-                          buildCard(
-                            title: 'Product Media',
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                        child: Image.network(
-                                            'https://via.placeholder.com/100')),
-                                    sw1,
-                                    Expanded(
-                                        child: Image.network(
-                                            'https://via.placeholder.com/100')),
-                                    sw1,
-                                    Expanded(
-                                        child: Image.network(
-                                            'https://via.placeholder.com/100')),
-                                    sw1,
-                                    Expanded(
-                                        child: Image.network(
-                                            'https://via.placeholder.com/100')),
-                                  ],
-                                ),
-                                sh2,
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          const WidgetStatePropertyAll(
-                                              Colors.blue),
-                                      shape: WidgetStatePropertyAll(
-                                          ContinuousRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5)))),
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Add product',
-                                    style: AppTextStyles.bodyText2
-                                        .copyWith(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           buildCard(
                             title: 'General Information',
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 buildTextField(
-                                    label: 'Product Name',
+                                    label: 'Coupon Name',
                                     hint: 'Xiaomi Watch 2 Pro'),
                                 buildTextField(
-                                  label: 'Description',
+                                  label: 'Code',
                                   hint:
                                       'Supports 19 professional fitness modes and more. Suitable for swimming.',
-                                  maxLines: 4,
                                 ),
                               ],
                             ),
@@ -92,12 +47,11 @@ class AddProduct extends StatelessWidget {
                             child: Column(
                               children: [
                                 buildTextField(
-                                    label: 'Base Price', hint: '\$118.89'),
-                                buildTextField(label: 'Stock', hint: '25'),
+                                    label: 'Amount %', hint: '\$118.89'),
                                 DropdownButtonFormField<String>(
                                   decoration: const InputDecoration(
-                                      labelText: 'Product Category'),
-                                  items: ['Nike', 'Puma', 'Other', 'Other']
+                                      labelText: 'Coupon Category'),
+                                  items: ['All Product', 'Nike','Puma', 'Other', 'Other']
                                       .map((e) => DropdownMenuItem(
                                           value: e,
                                           child: Text(
@@ -114,53 +68,7 @@ class AddProduct extends StatelessWidget {
                           ),
                         ],
                       )),
-                      if(width>900)
-                  Expanded(
-                      flex: 3,
-                      child: 
-                      buildCard(
-                        title: 'Product Media',
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Image.network(
-                                        'https://via.placeholder.com/100')),
-                                sw1,
-                                Expanded(
-                                    child: Image.network(
-                                        'https://via.placeholder.com/100')),
-                                sw1,
-                                Expanded(
-                                    child: Image.network(
-                                        'https://via.placeholder.com/100')),
-                                sw1,
-                                Expanded(
-                                    child: Image.network(
-                                        'https://via.placeholder.com/100')),
-                              ],
-                            ),
-                            sh2,
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      const WidgetStatePropertyAll(
-                                          Colors.blue),
-                                  shape: WidgetStatePropertyAll(
-                                      ContinuousRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)))),
-                              onPressed: () {},
-                              child: Text(
-                                'Add product',
-                                style: AppTextStyles.bodyText2
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
+                     
                 ],
               ),
             ],
@@ -231,7 +139,8 @@ class TopBox extends StatelessWidget {
       padding: EdgeInsets.all(14.sp),
       margin: EdgeInsets.all(10.sp),
       width: double.infinity,
-      height: width<900?20.h:16.h,
+           height: width<900?20.h:16.h,
+
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey[300]!),
           color: Colors.white,
@@ -243,9 +152,9 @@ class TopBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Add Product', style: AppTextStyles.headline3),
+              Text('Add  Coupon', style: AppTextStyles.headline3),
               Text(
-                'Dashboard > Product List > Add Product',
+                'Dashboard > coupon List > Add coupon',
                 style: AppTextStyles.bodyText1.copyWith(color: Colors.grey),
               ),
                 if(width < 900)
@@ -282,7 +191,7 @@ class TopBox extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5)))),
               onPressed: () {},
               child: Text(
-                'Add product',
+                'Add Coupon',
                 style: AppTextStyles.bodyText2.copyWith(color: Colors.white),
               ),
             ),
