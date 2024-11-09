@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitmore_admin/controllers/side_bar/menu_controller.dart';
 import 'package:fitmore_admin/firebase_options.dart';
+import 'package:fitmore_admin/view/product/product_add.dart';
 import 'package:fitmore_admin/view/product/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(create: (context) => MenuuController()),
           ],
-          child: const ProdectList(),
+          child:  AddProduct(),
         ),
       ),
     );
