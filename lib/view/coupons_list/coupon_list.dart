@@ -1,6 +1,6 @@
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
-import 'package:fitmore_admin/view/coupons/add_copon.dart';
+import 'package:fitmore_admin/view/coupon_add/add_copon.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

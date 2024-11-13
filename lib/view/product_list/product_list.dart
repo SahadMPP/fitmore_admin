@@ -1,6 +1,6 @@
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
-import 'package:fitmore_admin/view/product/product_add.dart';
+import 'package:fitmore_admin/view/product_add/product_add.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

@@ -3,12 +3,11 @@
 // import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitmore_admin/controllers/side_bar/menu_controller.dart';
 import 'package:fitmore_admin/firebase_options.dart';
-import 'package:fitmore_admin/view/product/product_add.dart';
+import 'package:fitmore_admin/view/product_add/product_add.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'view/auth/login_page.dart';
 import 'package:sizer/sizer.dart';
 
 // import 'view/home/home_page.dart';

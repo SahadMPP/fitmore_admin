@@ -25,12 +25,11 @@ class AppResponsive extends StatelessWidget {
 
     if (isDesktop(context)) {
       return desktop;
-    } else if (isTablet(context) && tablet != null) {
+    } else if (isTablet(context)) {
       return tablet;
     } else {
       return mobile;
     }
 
-    return Container();
   }
 }

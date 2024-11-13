@@ -1,5 +1,5 @@
 import 'package:fitmore_admin/controllers/side_bar/menu_controller.dart';
-import 'package:fitmore_admin/view/coupons/coupon_list.dart';
+import 'package:fitmore_admin/view/coupons_list/coupon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_hr_management/controllers/menu_controller.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../common/app_colors.dart';
 import '../../common/app_responsive.dart';
 import '../dashboard/dashboard.dart';
-import '../product/product_list.dart';
+import '../product_list/product_list.dart';
 import '../widget/side_bar_menu.dart';
 
 class HomePage extends StatefulWidget {
