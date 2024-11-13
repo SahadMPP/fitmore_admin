@@ -1,5 +1,6 @@
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
+import 'package:fitmore_admin/view/coupons/add_copon.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,7 +16,7 @@ class CouponList extends StatelessWidget {
         padding: EdgeInsets.all(12.sp),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 40,
               child: Row(
@@ -31,7 +32,7 @@ class CouponList extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddCoupon(),)),
                     style: ButtonStyle(
                       backgroundColor: 
                       const WidgetStatePropertyAll(Colors.blue),
@@ -39,7 +40,6 @@ class CouponList extends StatelessWidget {
                     ),
                     child: Text(
                       'Add',
-
                       style:
                           AppTextStyles.caption.copyWith(color: Colors.white),
                     ),

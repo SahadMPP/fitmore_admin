@@ -35,7 +35,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
-  image_picker_web: ^4.0.0
+  # image_picker_web: ^4.0.0
   provider: ^5.0.0
   sizer: ^3.0.3
 

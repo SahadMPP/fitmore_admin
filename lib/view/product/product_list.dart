@@ -1,5 +1,6 @@
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
+import 'package:fitmore_admin/view/product/product_add.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,7 +31,7 @@ class ProdectList extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddProduct(),)),
                     style: ButtonStyle(
                         backgroundColor:
                             const WidgetStatePropertyAll(Color.fromARGB(255, 14, 48, 236)),

@@ -1,10 +1,11 @@
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
+import 'package:fitmore_admin/view/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,7 @@ class Login extends StatelessWidget {
                     SizedBox(
                       width: 15.w,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage(),),(route) => false,),
                         style: const ButtonStyle(
                             shadowColor: WidgetStatePropertyAll(Colors.black),
                             backgroundColor: WidgetStatePropertyAll(
