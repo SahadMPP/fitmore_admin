@@ -3,7 +3,7 @@
 // import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitmore_admin/controllers/side_bar/menu_controller.dart';
 import 'package:fitmore_admin/firebase_options.dart';
-import 'package:fitmore_admin/view/product_add/product_add.dart';
+import 'package:fitmore_admin/view/coupons_list/coupon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData.dark().copyWith(
               textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-          home: const AddProduct(),
+          home: const CouponList(),
         ),
       ),
     );

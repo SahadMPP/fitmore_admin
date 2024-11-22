@@ -201,8 +201,8 @@ class _AddProductState extends State<AddProduct> {
           sh2,
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.blue),
-              shape: MaterialStateProperty.all(
+              backgroundColor: WidgetStateProperty.all(Colors.blue),
+              shape: WidgetStateProperty.all(
                 ContinuousRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
               ),
@@ -268,8 +268,8 @@ class TopBox extends StatelessWidget {
       children: [
         ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all(
+            backgroundColor: WidgetStateProperty.all(Colors.white),
+            shape: WidgetStateProperty.all(
               ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5)),
             ),
           ),

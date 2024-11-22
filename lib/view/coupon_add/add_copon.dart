@@ -1,3 +1,5 @@
+import 'package:fitmore_admin/model/coupon.dart';
+import 'package:fitmore_admin/service/global/firebase/coupon.dart';
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
 import 'package:flutter/material.dart';
@@ -189,7 +191,11 @@ class TopBox extends StatelessWidget {
                   backgroundColor: const WidgetStatePropertyAll(Colors.blue),
                   shape: WidgetStatePropertyAll(ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(5)))),
-              onPressed: () {},
+              onPressed: () {
+
+                FireStoreCouponService couponService = FireStoreCouponService();
+                couponService.addNote(Coupon(name: 'name3', code: 'code3', amount: 'amount3', product: 'product3'));
+              },
               child: Text(
                 'Add Coupon',
                 style: AppTextStyles.bodyText2.copyWith(color: Colors.white),
