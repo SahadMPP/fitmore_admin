@@ -1,13 +1,18 @@
 import 'package:fitmore_admin/service/global/firebase/coupon.dart';
 import 'package:fitmore_admin/utils/const/sized_box.dart';
+import 'package:fitmore_admin/view/coupon_add/widget/card.dart';
+import 'package:fitmore_admin/view/coupon_add/widget/text_field.dart';
+import 'package:fitmore_admin/view/coupon_add/widget/top_box.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../model/coupon.dart';
 import '../widget/snack_bar.dart';
 
 class AddCoupon extends StatefulWidget {
-  const AddCoupon({super.key});
+  final bool isUpdate;
+  final Coupon? updateData;
+  final String? id;
+  const AddCoupon({super.key,required this.isUpdate, this.updateData, this.id});
 
   @override
   State<AddCoupon> createState() => _AddCouponState();
@@ -17,10 +22,21 @@ class _AddCouponState extends State<AddCoupon> {
   final _formKey = GlobalKey<FormState>(); // Form Key for validation
 
   // Controllers for text fields
-  final _couponNameController = TextEditingController();
-  final _codeController = TextEditingController();
-  final _amountController = TextEditingController();
+  TextEditingController _couponNameController = TextEditingController();
+  TextEditingController _codeController = TextEditingController();
+  TextEditingController _amountController = TextEditingController();
   String? _selectedCategory;
+
+  @override
+  void initState() {
+    if (widget.isUpdate) {
+      _couponNameController = TextEditingController(text: widget.updateData!.name);
+      _codeController = TextEditingController(text: widget.updateData!.code);
+      _amountController = TextEditingController(text: widget.updateData!.amount);
+      _selectedCategory = widget.updateData!.product.toString();
+    }
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -45,7 +61,10 @@ class _AddCouponState extends State<AddCoupon> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TopBox(width: width, onAddCoupon: _addCoupon),
+                if(widget.isUpdate)
+                TopBox(width: width, onAddCoupon: _updateCoupon, isUpdate: true),
+                if(!widget.isUpdate)
+                TopBox(width: width, onAddCoupon: _addCoupon,isUpdate: false),
                 sw5,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,64 +161,7 @@ class _AddCouponState extends State<AddCoupon> {
     );
   }
 
-  Widget buildCard({required String title, required Widget child}) {
-    return Container(
-      padding: EdgeInsets.all(12.0.sp),
-      margin: EdgeInsets.all(12.0.sp),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.sp),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          sh2,
-          child,
-        ],
-      ),
-    );
-  }
 
-  Widget buildTextField({
-    required String label,
-    required String hint,
-    required TextEditingController controller,
-    String? Function(String?)? validator,
-    int maxLines = 1,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-                color: Colors.grey, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: .5.h),
-          TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: controller,
-            maxLines: maxLines,
-            validator: validator,
-            decoration: InputDecoration(
-              hintText: hint,
-              filled: true,
-              fillColor: Colors.grey[100],
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[300]!),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   void _addCoupon() {
     if (_formKey.currentState!.validate()) {
@@ -214,93 +176,29 @@ class _AddCouponState extends State<AddCoupon> {
         Navigator.of(context).pop();
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(customSnackbar(massage: e.toString(), backgroundColor: Colors.red));
-
       }
 
       // Reset form or navigate
     }
   }
-}
 
-class TopBox extends StatelessWidget {
-  final double width;
-  final VoidCallback onAddCoupon; // Callback for add coupon button
+   void _updateCoupon() {
+    if (_formKey.currentState!.validate()) {
+      try {
+        FireStoreCouponService couponService = FireStoreCouponService();
+        couponService.updateNote(widget.id!,Coupon(
+            name: _couponNameController.text,
+            code: _codeController.text,
+            amount: _amountController.text,
+            product: _selectedCategory.toString()));
+        ScaffoldMessenger.of(context).showSnackBar(customSnackbar(massage: 'Coupon Updated', backgroundColor: Colors.green));
+        Navigator.of(context).pop();
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(customSnackbar(massage: e.toString(), backgroundColor: Colors.red));
+      }
 
-  const TopBox({
-    super.key,
-    required this.width,
-    required this.onAddCoupon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(14.sp),
-      margin: EdgeInsets.all(10.sp),
-      width: double.infinity,
-      height: width < 900 ? 22.h : 20.h,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('Add Coupon',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const Text(
-                'Dashboard > Coupon List > Add Coupon',
-                style: TextStyle(color: Colors.grey),
-              ),
-              if (width < 900) sideButton(),
-            ],
-          ),
-          if (width > 900) sideButton(),
-        ],
-      ),
-    );
-  }
-
-  Row sideButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
-          onPressed: () {
-            // Discard Changes
-          },
-          child: const Text(
-            'Discard Changes',
-            style: TextStyle(color: Colors.red),
-          ),
-        ),
-        sw1,
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
-          onPressed: onAddCoupon,
-          child: const Text(
-            'Add Coupon',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ],
-    );
+      // Reset form or navigate
+    }
   }
 }
 

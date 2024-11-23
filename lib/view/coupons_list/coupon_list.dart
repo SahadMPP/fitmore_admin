@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitmore_admin/model/coupon.dart';
 import 'package:fitmore_admin/service/global/firebase/coupon.dart';
 import 'package:fitmore_admin/utils/const/sized_box.dart';
 import 'package:fitmore_admin/utils/const/text_style.dart';
@@ -12,7 +13,6 @@ class CouponList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FireStoreCouponService fireStoreCouponService = FireStoreCouponService();
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -37,7 +37,7 @@ class CouponList extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () =>
                         Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AddCoupon(),
+                      builder: (context) => const AddCoupon(isUpdate: false),
                     )),
                     style: ButtonStyle(
                         backgroundColor:
@@ -190,8 +190,18 @@ class CouponList extends StatelessWidget {
                                             InkWell(
                                               onTap: () => Navigator.of(context)
                                                   .push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const AddCoupon(),
+                                                builder: (context) => AddCoupon(
+                                                  isUpdate: true,
+                                                  updateData: Coupon(
+                                                      name: data['name']
+                                                          .toString(),
+                                                      code: data['code'],
+                                                      amount: data['amount']
+                                                          .toString(),
+                                                      product: data['product']
+                                                          .toString()),
+                                                  id: document.id,
+                                                ),
                                               )),
                                               child: Icon(
                                                 Icons.edit,
